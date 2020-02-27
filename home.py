@@ -43,15 +43,17 @@ driver.find_element(By.XPATH, """//*[contains(text(), 'Continue')]""").click()
 driver.find_element(By.XPATH, """(//*[contains(text(), 'Withdraw')])[1]""").click()
 
 skin_name = "Golden Staff"
-
+data = pd.read_csv("Skins.csv")
 while True:
     driver.refresh()
     time.sleep(refresh_wait)
     try:
         driver.find_element(By.XPATH, """(//*[contains(text(), 'Dota')])[1]""").click()
         # dataframe read and pass the name of skin in buy function
-        for i in range (dataframe)
-            buy(i)
+        for i in data.index:
+            if data['Flag'][i]=="Not Sent":
+                buy(data['User_id'][i])
+                data['Flag'][i] = "Sent"
     except:
         pass
     time.sleep(dota_wait)
