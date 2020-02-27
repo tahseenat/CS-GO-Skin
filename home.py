@@ -8,10 +8,13 @@ from skin_details import get_src
 
 
 def buy(skin_name):
-    driver.find_element(By.XPATH, """(//*[contains(text(), '{}')])[1]""".format(skin_name)).click()
-    driver.find_element(By.XPATH, """(//*[contains(text(), 'Withdraw')])[2]""").click()
-    driver.find_element(By.XPATH, """//*[@id="trade-url"]""").send_keys(steam_url)
-    driver.find_element(By.XPATH, """(//*[contains(text(), 'Confirm')])[1]""").click()
+    try:
+        driver.find_element(By.XPATH, """(//*[contains(text(), '{}')])[1]""".format(skin_name)).click()
+        driver.find_element(By.XPATH, """(//*[contains(text(), 'Withdraw')])[2]""").click()
+        driver.find_element(By.XPATH, """//*[@id="trade-url"]""").send_keys(steam_url)
+        driver.find_element(By.XPATH, """(//*[contains(text(), 'Confirm')])[1]""").click()
+    except:
+        pass
 
 
 # if __name__ == "__main__":
@@ -46,7 +49,9 @@ while True:
     time.sleep(refresh_wait)
     try:
         driver.find_element(By.XPATH, """(//*[contains(text(), 'Dota')])[1]""").click()
-        buy(skin_name)
+        # dataframe read and pass the name of skin in buy function
+        for i in range (dataframe)
+            buy(i)
     except:
         pass
     time.sleep(dota_wait)
